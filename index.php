@@ -48,31 +48,31 @@
 ?>
 <!DOCTYPE html>
 <html>
-<head>
-        <title>Robin's Localhost</title>
-        <style>
-                *
-                {
-                font-family:monospace;
-                }
-                li
-                {
-                font-size:18px;
-                line-height:1.4em;
-                }
-        </style>
-</head>
-<body>
+  <head>
+    <title>Robin's Localhost</title>
+    <style>
+      *
+      {
+      font-family:monospace;
+      }
+      li
+      {
+      font-size:18px;
+      line-height:1.4em;
+      }
+    </style>
+  </head>
+  <body>
 
-<?php
-  echo "<h1><a href='/'>Main</a> &mdash; Dir: $path</h1>";
-?>
+    <?php
+      echo "<h1><a href='/'>Main</a> &mdash; Dir: $path</h1>";
+    ?>
 
-<ol>
-<?php
-  echo $output;
-?>
-</ol>
+    <ol>
+      <?php
+        echo $output;
+      ?>
+    </ol>
 
-</body>
+  </body>
 </html>
