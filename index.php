@@ -25,7 +25,10 @@
       $output .= "<li><a href='http://localhost$path/$entry'>$entry</a></li>\r\n";
     }
   }else{
-    $extension = pathinfo(parse_url($path)["path"])["extension"];
+    $info = pathinfo(parse_url($path)["path"]);
+    $dir = $info["dirname"];
+    $extension = $info["extension"];
+    $filename = $info["basename"];
     $mimes = array(
       "html"  => "text/html",
       "php"   => "text/html",
@@ -38,7 +41,11 @@
       "js"    => "application/javascript",
       "json"  => "application/json"
     );
-    if(array_key_exists($extension, $mimes)){
+    if($extension === "php"){
+      chdir($dir);
+      require($filename);
+      die();
+    }else if(array_key_exists($extension, $mimes)){
       header("Content-Type: $mimes[$extension]");
     }else{
       header("Content-Type: text/plain");
