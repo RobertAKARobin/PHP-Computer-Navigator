@@ -24,6 +24,9 @@
       $entry	= $entries[$x];
       $output .= "<li><a href='http://localhost$path/$entry'>$entry</a></li>\r\n";
     }
+  }else if(!file_exists($path)){
+    http_response_code(404);
+    die("404");
   }else{
     $info = pathinfo(parse_url($path)["path"]);
     $dir = $info["dirname"];
