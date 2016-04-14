@@ -1,4 +1,6 @@
 <?php
+  ini_set("error_reporting", 6143);
+  ini_set("display_errors", 1);
   $ip = $_SERVER["REMOTE_ADDR"];
   $log = "suspicious.txt";
 
@@ -31,6 +33,7 @@
     $filename = $info["basename"];
     $mimes = array(
       "html"  => "text/html",
+      "htm"   => "text/html",
       "php"   => "text/html",
       "md"    => "text/markdown",
       "css"   => "text/css",
