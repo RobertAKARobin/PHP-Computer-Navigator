@@ -19,7 +19,8 @@
   }
 
   $path = preg_replace("/\/$/", "", $_SERVER["REQUEST_URI"]);
-  if(is_dir($path)){
+  $info = pathinfo(parse_url($path)["path"]);
+  if(!array_key_exists("extension", $info)){
     $entries = scandir($path);
     $output = "";
     for($x = 0; $x < count($entries); $x++){
@@ -27,7 +28,6 @@
       $output .= "<li><a href='http://localhost$path/$entry'>$entry</a></li>\r\n";
     }
   }else{
-    $info = pathinfo(parse_url($path)["path"]);
     $dir = $info["dirname"];
     $extension = $info["extension"];
     $filename = $info["basename"];
@@ -56,7 +56,7 @@
     }else{
       header("Content-Type: text/plain");
     }
-    die(file_get_contents($path));
+    die(file_get_contents($info["dirname"] . "/" . $info["basename"]));
   }
 ?>
 <!DOCTYPE html>
