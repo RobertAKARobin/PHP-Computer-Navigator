@@ -19,13 +19,20 @@
   }
 
   $path = preg_replace("/\/$/", "", $_SERVER["REQUEST_URI"]);
+  $is_root = false;
+  if(empty($path)){
+    $is_root = true;
+    $path = "/";
+  }
   $info = pathinfo(parse_url($path)["path"]);
   if(!array_key_exists("extension", $info)){
     $entries = scandir($path);
     $output = "";
     for($x = 0; $x < count($entries); $x++){
       $entry	= $entries[$x];
-      $output .= "<li><a href='http://localhost$path/$entry'>$entry</a></li>\r\n";
+      if($is_root) $path = "";
+      $filepath = "http://localhost$path/$entry";
+      $output .= "<li><a href='$filepath'>$entry</a></li>\r\n";
     }
   }else{
     $dir = $info["dirname"];
